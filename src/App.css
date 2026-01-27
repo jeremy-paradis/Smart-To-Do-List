@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1a1a1a, #0d0d0d);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app {
+  width: 500px;
+  background: #141414;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-form input {
+  background: #1f1f1f;
+  border: none;
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: white;
+  font-size: 15px;
+  outline: none;
+}
+
+.task-form input::placeholder {
+  color: #888;
+}
+
+.task-form button {
+  margin-top: 8px;
+  padding: 14px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  transition: 0.3s ease;
+}
+.task-form button:hover {
+  filter: drop-shadow(0 0 5px #22c55e);
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-radius: 16px;
+  gap: 16px;
+}
+
+
+/* 🔴 Urgent */
+.task.urgent {
+  background: linear-gradient(135deg, #7f1d1d, #ef4444);
+}
+
+/* 🟠 Medium */
+.task.medium {
+  background: linear-gradient(135deg, #78350f, #f59e0b);
+}
+
+/* 🟢 Low */
+.task.low {
+  background: linear-gradient(135deg, #064e3b, #22c55e);
+}
+
+.task-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.task-info strong {
+  font-size: 16px;
+}
+
+.task-info small {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* Bouton supprimer */
+.task button {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.task button:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
