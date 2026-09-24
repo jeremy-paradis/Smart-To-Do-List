@@ -8,17 +8,151 @@ body {
   min-height: 100vh;
   background: radial-gradient(circle at top, #1a1a1a, #0d0d0d);
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 32px 20px;
 }
 
-.app {
-  width: 500px;
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.timer-panel {
+  width: 300px;
+  background: rgba(20, 20, 20, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 22px 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+}
+
+.timer-panel h2 {
+  margin: 0 0 18px;
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+.timer-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #d1d5db;
+  font-size: 0.95rem;
+}
+
+.timer-input {
+  width: 100%;
+  background: #1f1f1f;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  padding: 12px 14px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.timer-display {
+  margin-top: 18px;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.08em;
+  color: #f8fafc;
+}
+
+.timer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.timer-actions button,
+.task-form button,
+.check-form button,
+.delete-btn {
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.timer-actions button:hover,
+.task-form button:hover,
+.check-form button:hover,
+.delete-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.timer-actions button {
+  padding: 12px 14px;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.pause-btn {
+  background: linear-gradient(135deg, #f59e0b, #f97316) !important;
+}
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+
+.timer-status {
+  margin-top: 18px;
+  text-align: center;
+  color: #cbd5e1;
+  min-height: 24px;
+}
+
+.timer-status.active {
+  color: #86efac;
+}
+
+.timer-status.alarm {
+  color: #fca5a5;
+  font-weight: 700;
+}
+
+.main-layout {
+  display: flex;
+  flex: 1;
+  gap: 24px;
+  min-width: 0;
+}
+
+.app,
+.checklist-panel {
   background: #141414;
   padding: 24px;
   border-radius: 16px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.original-panel {
+  flex: 1.4;
+  min-width: 0;
+}
+
+.checklist-panel {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.checklist-panel h2 {
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 18px;
 }
 
 h1 {
@@ -26,13 +160,15 @@ h1 {
   margin-bottom: 24px;
 }
 
-.task-form {
+.task-form,
+.check-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.task-form input {
+.task-form input,
+.check-form input {
   background: #1f1f1f;
   border: none;
   padding: 12px 14px;
@@ -42,11 +178,13 @@ h1 {
   outline: none;
 }
 
-.task-form input::placeholder {
+.task-form input::placeholder,
+.check-form input::placeholder {
   color: #888;
 }
 
-.task-form button {
+.task-form button,
+.check-form button {
   margin-top: 8px;
   padding: 14px;
   background: linear-gradient(135deg, #22c55e, #16a34a);
@@ -56,13 +194,10 @@ h1 {
   font-size: 15px;
   cursor: pointer;
   color: rgb(0, 0, 0);
-  transition: 0.3s ease;
-}
-.task-form button:hover {
-  filter: drop-shadow(0 0 5px #22c55e);
 }
 
-.task-list {
+.task-list,
+.checklist-list {
   list-style: none;
   padding: 0;
   margin-top: 24px;
@@ -80,18 +215,14 @@ h1 {
   gap: 16px;
 }
 
-
-/* 🔴 Urgent */
 .task.urgent {
   background: linear-gradient(135deg, #7f1d1d, #ef4444);
 }
 
-/* 🟠 Medium */
 .task.medium {
   background: linear-gradient(135deg, #78350f, #f59e0b);
 }
 
-/* 🟢 Low */
 .task.low {
   background: linear-gradient(135deg, #064e3b, #22c55e);
 }
@@ -111,8 +242,8 @@ h1 {
   opacity: 0.9;
 }
 
-/* Bouton supprimer */
-.task button {
+.task button,
+.delete-btn {
   background: rgba(255, 255, 255, 0.15);
   border: none;
   padding: 8px 12px;
@@ -122,15 +253,68 @@ h1 {
   white-space: nowrap;
 }
 
-.task button:hover {
-  background: rgba(255, 255, 255, 0.25);
+.check-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #1f2937, #111827);
+}
+
+.check-item.done {
+  opacity: 0.7;
+}
+
+.check-item.done span {
+  text-decoration: line-through;
+}
+
+.check-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.check-label input {
+  width: 18px;
+  height: 18px;
+  accent-color: #22c55e;
+}
+
+.check-label span {
+  word-break: break-word;
+}
+
+.empty-state {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  color: #cbd5e1;
+  padding: 18px;
+  border-radius: 12px;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
-
-  .app {
-    width: 90%;
-    margin: auto;
+  .app-shell,
+  .main-layout {
+    flex-direction: column;
   }
 
+  .timer-panel,
+  .checklist-panel,
+  .original-panel,
+  .app {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .check-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
