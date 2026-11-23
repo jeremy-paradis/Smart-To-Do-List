@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f7fb">
+  <title>Weekly Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">W</div>
+      <div>
+        <h1>Weekly Planner</h1>
+        <p>Organise ta semaine.</p>
+      </div>
+    </div>
+
+    <nav class="week-navigation" aria-label="Navigation des semaines">
+      <button id="prevWeek" class="nav-btn" aria-label="Semaine précédente">←</button>
+      <div id="weekLabel" class="week-info"></div>
+      <button id="nextWeek" class="nav-btn" aria-label="Semaine suivante">→</button>
+      <button id="today" class="today-btn">Aujourd'hui</button>
+      <button id="themeToggle" class="theme-btn" type="button" aria-pressed="false">🌙 Mode sombre</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="calendar-wrapper">
+      <div id="calendar" class="calendar" aria-label="Planning hebdomadaire"></div>
+    </div>
+    <div class="instructions">
+      <span>＋ Clique et glisse dans une journée pour créer une tâche</span>
+      <span>⠿ Déplace une tâche pour changer son jour ou son horaire</span>
+      <span>↕ Tire le bord inférieur pour modifier sa durée</span>
+      <span>Double-clique sur le titre pour le modifier</span>
+    </div>
+    <p class="save-status" id="saveStatus" aria-live="polite">Sauvegarde automatique activée</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
